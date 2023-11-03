@@ -1,10 +1,15 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
-    //i solemnly swear to not statically declare any objects up here
+    //i solemnly swear to not statically declare any variables up here
     public static void main(String[] args) throws Exception {
+        final String os = System.getProperty("os.name");
         Scanner scanscan = new Scanner(System.in);
         System.out.println("Connect 4");
+        System.out.println(os);
+        scanscan.next();
+        clear(os);
     }
 
     /**
@@ -21,10 +26,25 @@ public class App {
                 if (inty > bound)
                     return inty;
                 System.out.println("Invalid input.\n"+prompt);
-            }
-            catch(NumberFormatException ne) {
+            } catch(NumberFormatException ne) {
                 System.out.println("Invalid input.\n"+prompt);
             }
         }
+    }
+
+    /**
+     * @param os that string that we grab at the start of the runtime
+     */
+    public static void clear(String os) {
+        try {
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }  
     }
 }
