@@ -25,7 +25,43 @@ public class CLUtility {
                     return inty;
                 System.out.println("Invalid input.\n"+prompt);
             } catch(NumberFormatException ne) {
-                System.out.println("Invalid f input.\n"+prompt);
+                System.out.println("Invalid input.\n"+prompt);
+            }
+        }
+    }
+
+    /**
+     * @param prompt String that prompts the user to enter an integer input
+     * @param bound Lowest value that can be inputted
+     * @param scanscan The scanner that will be used (duh)
+     * @return valid input for switch statement
+     */
+    //the evil twin of switch validator
+    public static int waSwitchValidator(String prompt, int bound, Scanner scanscan) {
+        System.out.println(prompt);
+        while(true){
+            try {
+                int inty = Integer.parseInt(scanscan.next());
+                if (inty >= bound)
+                    return inty;
+                System.out.println("Invalid input.\n"+prompt);
+            } catch(NumberFormatException ne) {
+                System.out.println("Invalid input.\n"+prompt);
+            }
+        }
+    }
+    //overloading
+    //exclusive with bound
+    public static int waSwitchValidator(String prompt, int upper, int lower, Scanner scanscan) {
+        System.out.println(prompt);
+        while(true){
+            try {
+                int inty = Integer.parseInt(scanscan.next());
+                if (inty > lower && inty < upper)
+                    return inty;
+                System.out.println("Invalid input.\n"+prompt);
+            } catch(NumberFormatException ne) {
+                System.out.println("Invalid input.\n"+prompt);
             }
         }
     }

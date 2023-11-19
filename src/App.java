@@ -16,7 +16,7 @@ public class App {
                          + "8b      88    88 88 V8o88 88 V8o88 88~~~~~ 8b         88      V88888D\n"
                          + "Y8b  d8 `8b  d8' 88  V888 88  V888 88.     Y8b  d8    88          88\n"
                          + "`Y88P'   `Y88P'  VP   V8P VP   V8P Y88888P  `Y88P'    YP          VP\n");
-        switch (CLUtility.switchValidator("1) New Game\n2) LAN Multiplayer \n3) Custom Board \n4) Exit", 3, scanscan)) {
+        switch (CLUtility.switchValidator("1) New Game\n2) LAN Multiplayer \n3) Custom Board \n4) Exit", 4, scanscan)) {
             case 1:
                 CLUtility.clear(os);
                 //6 rows 7 columns
@@ -27,12 +27,13 @@ public class App {
                     }
                 }
                 drawBoard(board);
-                System.out.println(validator(board, 4)[0]);
-                System.out.println(validator(board, 4)[1]);
             case 2:
                 // CLUtility.clear(os);
             case 3:
-                System.out.println("Enter a board width (n>4)");
+                //waSwitchValidator is the evil version of switchValidator, hence the 'wa', like wario or waluigi
+                int w = CLUtility.waSwitchValidator("Enter a board width (n>=4)", 4, scanscan);
+                int win = CLUtility.waSwitchValidator("Enter number in a row to win (3<n<" + w + ")", w, 3, scanscan);
+
             case 4:
                 scanscan.close();
                 System.exit(0);
@@ -43,8 +44,7 @@ public class App {
     /**
      * @param board the game board, obviously
      */
-    //im pretty sure the time complexity on this is like worse than O(n^2)
-    //but hey, as long as youre not playing connect 1000 this will run fine
+    //lots of nested for loops but it gets the job done
     static void drawBoard(char[][] board) {
         for (int r = 0; r < board.length; r++) {
             for (int c = 0; c < board[0].length; c++) {
@@ -88,10 +88,21 @@ public class App {
     }
 
     /**
+     * @param board the game board
+     */
+    //generalized method to check for x in a row
+    static void winCheck(char[][] board, int checkFor) {
+
+    }
+
+    /**
      * @param board game board
      */
-    static void gameLogic(char[][] board) {
+    static void gameLogic(char[][] board, int checkFor) {
+        boolean game = true;
+        while (game) {
 
+        }
     }
 
 }
