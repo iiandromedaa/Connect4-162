@@ -21,7 +21,7 @@ public class CLUtility {
         while(true){
             try {
                 int inty = Integer.parseInt(scanscan.next());
-                if (inty <= bound)
+                if (inty <= bound && inty > -1)
                     return inty;
                 System.out.println("Invalid input.\n"+prompt);
             } catch(NumberFormatException ne) {
@@ -57,7 +57,7 @@ public class CLUtility {
         while(true){
             try {
                 int inty = Integer.parseInt(scanscan.next());
-                if (inty > lower && inty < upper)
+                if (inty >= lower && inty <= upper)
                     return inty;
                 System.out.println("Invalid input.\n"+prompt);
             } catch(NumberFormatException ne) {
@@ -69,9 +69,9 @@ public class CLUtility {
     /**
      * @param os that string that we grab at the start of the runtime
      */
-    public static void clear(String os) {
+    public static void clear() {
         try {
-            if (os.contains("Windows")) {
+            if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
                 System.out.print("\033[H\033[2J");
